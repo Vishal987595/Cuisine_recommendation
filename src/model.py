@@ -25,8 +25,11 @@ def read_dataset():
         temp = str(items).split("$")
     for i in temp:
         recipe_items.add(i)
-    temp.append(str(name).split(" "))
-    X.append(temp)
+    temp.append(name)
+    tempstr = ""
+    for i in temp:
+        tempstr = tempstr + i + " "
+    X.append(tempstr)
 
     cuisine_type = set()
     for cuisines in Y_dataset['recipe_cuisine']:
@@ -34,5 +37,5 @@ def read_dataset():
     for j in temp:
             if len(j.strip()):
                 cuisine_type.add(j.strip())
-    Y.append(temp)
+    Y.append(temp[0])
     return X, Y

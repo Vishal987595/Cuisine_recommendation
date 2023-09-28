@@ -13,4 +13,10 @@
 ## My approach
 - First clean the description
 - Train the models
-- Use the models to predict the cuisine type
+- Use the models to predict the cuisine type 
+
+## Usage
+- Run the script.py file
+- Enter the recipe name
+- Now, enter the recipe description
+- It will return the predictions of various models

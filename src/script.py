@@ -1,4 +1,7 @@
 from model import read_dataset
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline   
 import re
 
 special_character_remover = re.compile('[/(){}\[\]\|@,:]') 
@@ -10,12 +13,18 @@ def clean_recipe(text):
    # Removing the stopwords
    return text
 
-def take_input():
+def take_input(X, y):
     recipe_name = input("Enter recipe name:").lower()
     recipe = input("Enter the recipe: ").lower()
     clean_recipe(recipe)
-    predictions = []
-    return predictions
+    lr = Pipeline([('vect', CountVectorizer()),
+    ('tfidf', TfidfTransformer()),
+    ('clf', LogisticRegression())
+    ])
+    lr.fit(X, y)
+    ans = lr.predict(recipe+recipe_name)
+    print(ans)
+    return
 if __name__ == "__main__":
-    read_dataset()
-    take_input()
+    X, y = read_dataset()
+    take_input(X, y)
