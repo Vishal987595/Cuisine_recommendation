@@ -21,21 +21,21 @@ def read_dataset():
     X = []
     Y = []
     recipe_items = set()
+    count = 0
+    cuisine_type = set()
     for name, items in zip(X_dataset['name'], X_dataset['recipe_category']):
         temp = str(items).split("$")
-    for i in temp:
-        recipe_items.add(i)
-    temp.append(name)
-    tempstr = ""
-    for i in temp:
-        tempstr = tempstr + i + " "
-    X.append(tempstr)
-
-    cuisine_type = set()
-    for cuisines in Y_dataset['recipe_cuisine']:
+        for i in temp:
+            recipe_items.add(i)
+        temp.append(name)
+        tempstr = ""
+        for i in temp:
+            tempstr = tempstr + i + " "
+        cuisines = Y_dataset['recipe_cuisine'][count]
         temp = str(cuisines).split("$")
-    for j in temp:
+        for j in temp:
             if len(j.strip()):
                 cuisine_type.add(j.strip())
-    Y.append(temp[0])
+                Y.append(j)
+                X.append(tempstr)
     return X, Y
