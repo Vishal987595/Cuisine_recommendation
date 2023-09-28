@@ -25,4 +25,4 @@ def take_input(X, y):
     return
 if __name__ == "__main__":
     X, y = read_dataset()
-    take_input(X, y)
+    take_input(X, y) 
